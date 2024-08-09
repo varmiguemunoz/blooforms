@@ -1,7 +1,5 @@
-import React from "react";
-
 import { BsSearch } from "react-icons/bs";
-import Avatar from "@components/Avatar ";
+import Avatar from "./Avatar";
 
 export default function NavBar() {
   return (

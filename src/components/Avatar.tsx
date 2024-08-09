@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Image from "next/image";
 
 type BaseAvatar = {
   variant?: "circular" | "rounded";
@@ -8,7 +7,7 @@ type BaseAvatar = {
 
 type ImageAvatar = BaseAvatar & {
   type: "image";
-  alt?: string | any;
+  alt?: string;
   src: string;
 };
 
@@ -46,13 +45,13 @@ const Avatar: FC<AvatarProps> = (props) => {
       <div
         className={`relative flex shrink-0 select-none items-center justify-center bg-slate-200 font-bold uppercase text-slate-800 h-10 w-10 ${AvatarVariant[variant]} ${AvatarSize[size]} overflow-hidden`}
       >
-        <Image
+        <img
           src={src}
           alt={alt}
           width={60}
           height={60}
           className="h-full w-full object-cover object-center"
-          priority={true}
+          loading="lazy"
         />
       </div>
     );

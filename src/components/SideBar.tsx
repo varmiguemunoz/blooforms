@@ -1,8 +1,4 @@
-import Link from "next/link";
-import Image from "next/image";
 import { FC } from "react";
-import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
 
 // ICONS
 import { MdOutlineSettingsSuggest } from "react-icons/md";
@@ -10,9 +6,12 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import { PiChatsDuotone } from "react-icons/pi";
 import { LuWorkflow } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 type SideBarProps = {
   closeEvent?: () => void;
+  signOut?: () => void;
   groups?: {
     title: string;
     items: {
@@ -55,20 +54,20 @@ const getIcon = (url: string) => {
   }
 };
 
-const SideBar: FC<SideBarProps> = ({ closeEvent }) => {
-  const location = usePathname();
+const SideBar: FC<SideBarProps> = ({ closeEvent, signOut }) => {
+  const location = useLocation();
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-between px-[15px] py-[25px]">
       <div className="flex flex-col sm:justify-center justify-between items-center">
-        <Link href="/home/dashboard" className="mb-[30px]">
-          <Image
+        <Link to="/home/dashboard" className="mb-[30px]">
+          <img
             src="/bloomify-color.png"
             className="bg-cover"
             alt="logo"
             width={80}
             height={80}
-            priority
+            loading="lazy"
           />
         </Link>
 
@@ -80,10 +79,10 @@ const SideBar: FC<SideBarProps> = ({ closeEvent }) => {
           <div key={group.title}>
             <div>
               {group.items.map((item) => (
-                <Link href={`/home${item.url}`} key={item.url}>
+                <Link to={`/dashboard${item.url}`} key={item.url}>
                   <div
                     className={`text-sm text-darkGray flex flex-col justify-center items-center p-2.5 ${
-                      location.endsWith(item.url) &&
+                      location.pathname.endsWith(item.url) &&
                       "bg-basePurple text-white rounded-[10px]"
                     }`}
                   >
@@ -98,7 +97,7 @@ const SideBar: FC<SideBarProps> = ({ closeEvent }) => {
 
       <button
         className="text-sm text-darkGray flex flex-col justify-center items-center p-2.5"
-        onClick={() => signOut()}
+        onClick={() => signOut}
       >
         <CiLogout size={20} />
       </button>

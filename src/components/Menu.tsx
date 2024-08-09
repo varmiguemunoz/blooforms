@@ -1,8 +1,4 @@
-"use client";
-
-import React from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { useLocation, Link } from "react-router-dom";
 
 // ICONS
 import { MdAccountBox } from "react-icons/md";
@@ -31,15 +27,15 @@ const getIcon = (url: string) => {
 };
 
 export default function Menu() {
-  const location = usePathname();
+  const location = useLocation();
 
   return (
     <div className="bg-background p-5 rounded-lg">
       {MenuRouter.map((group) => (
         <Link
-          href={`/home/config/${group.url}`}
+          to={`/home/config/${group.url}`}
           className={`border-b flex items-center justify-start gap-1 cursor-pointer px-3 py-3 rounded-lg ${
-            location.endsWith(group.url) &&
+            location.pathname.endsWith(group.url) &&
             "bg-basePurple text-white rounded-[10px]"
           }`}
           key={group.title}

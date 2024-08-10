@@ -13,7 +13,7 @@ type CardProps = {
 
 /* eslint-enable no-unused-vars*/
 
-const CardWrapper: FC<CardProps> = ({
+const FormWrapper: FC<CardProps> = ({
   label,
   title,
   backButtonHref,
@@ -21,7 +21,7 @@ const CardWrapper: FC<CardProps> = ({
   children,
 }) => {
   return (
-    <Card>
+    <Card className="w-[400px] m-auto">
       <CardHeader>
         <div className="w-full flex flex-col gap-y-4 items-center justify-center">
           <h1 className="text-3xl font-semibold">{title}</h1>
@@ -40,4 +40,4 @@ const CardWrapper: FC<CardProps> = ({
   );
 };
 
-export default CardWrapper;
+export default FormWrapper;

@@ -62,11 +62,11 @@ const SideBar: FC<SideBarProps> = ({ closeEvent, signOut }) => {
       <div className="flex flex-col sm:justify-center justify-between items-center">
         <Link to="/home/dashboard" className="mb-[30px]">
           <img
-            src="/bloomify-color.png"
+            src="/bloomify-logo.png"
             className="bg-cover"
             alt="logo"
-            width={80}
-            height={80}
+            width={60}
+            height={60}
             loading="lazy"
           />
         </Link>

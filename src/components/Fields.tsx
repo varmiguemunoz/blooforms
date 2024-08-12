@@ -31,7 +31,7 @@ export default function Fields({
   return (
     <FormField
       control={form.control}
-      name="email"
+      name={type}
       render={({ field }) => (
         <FormItem className="text-start">
           <FormLabel>{label}</FormLabel>

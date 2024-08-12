@@ -30,14 +30,14 @@ export default function Wrapper({
 }: WrapperProps) {
   return (
     <section className="flex justify-between items-start gap-16 w-full">
-      <aside className="w-[15%] h-screen border-r-2 bg-gray-200 px-6 py-6 flex flex-col gap-5">
-        <div className="flex flex-col gap-2 h-full">
-          <h1 className="text-xl font-semibold px-2 text-center">{name}</h1>
+      <aside className="w-[13%] h-screen border-r bg-gray-100 px-6 py-6 flex flex-col">
+        <div className="flex flex-col h-full">
+          <h1 className="text-xl font-medium px-2 text-center">{name}</h1>
           {sideBarContent}
         </div>
       </aside>
 
-      <aside className="w-[85%] h-full">
+      <aside className="w-[85%] pr-16 h-full">
         <div
           className={`flex px-2 flex-col w-full h-full ${Justify[justify]} ${Padding[padding]}`}
         >

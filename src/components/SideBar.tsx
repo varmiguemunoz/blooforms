@@ -3,7 +3,6 @@ import { FC } from "react";
 // ICONS
 import { MdOutlineSettingsSuggest } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import { PiChatsDuotone } from "react-icons/pi";
 import { LuWorkflow } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
 import { Link } from "react-router-dom";
@@ -23,19 +22,15 @@ type SideBarProps = {
 
 const MenuRouter = [
   {
-    title: "Bloomify Tech",
+    title: "Blooforms",
     items: [
       {
-        url: "/dashboard",
-        title: "Chats",
+        url: "/home/dashboard",
+        title: "Forms",
       },
       {
-        url: "/automation",
-        title: "Automatizaciones",
-      },
-      {
-        url: "/config",
-        title: "Configuraciones",
+        url: "/home/settings",
+        title: "Settings",
       },
     ],
   },
@@ -43,12 +38,10 @@ const MenuRouter = [
 
 const getIcon = (url: string) => {
   switch (url) {
-    case "/automation":
+    case "/home/dashboard":
       return <LuWorkflow size="20" />;
-    case "/config":
+    case "/home/settings":
       return <MdOutlineSettingsSuggest size="20" />;
-    case "/dashboard":
-      return <PiChatsDuotone size="20" />;
     default:
       return null;
   }
@@ -60,7 +53,7 @@ const SideBar: FC<SideBarProps> = ({ closeEvent, signOut }) => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-between px-[15px] py-[25px]">
       <div className="flex flex-col sm:justify-center justify-between items-center">
-        <Link to="/home/dashboard" className="mb-[30px]">
+        <Link to="/dashboard" className="mb-[30px]">
           <img
             src="/bloomify-logo.png"
             className="bg-cover"
@@ -79,14 +72,26 @@ const SideBar: FC<SideBarProps> = ({ closeEvent, signOut }) => {
           <div key={group.title}>
             <div>
               {group.items.map((item) => (
-                <Link to={`/dashboard${item.url}`} key={item.url}>
+                <Link to={`${item.url}`} key={item.url}>
                   <div
-                    className={`text-sm text-darkGray flex flex-col justify-center items-center p-2.5 ${
+                    className={`flex items-center justify-start ${
                       location.pathname.endsWith(item.url) &&
-                      "bg-basePurple text-white rounded-[10px]"
+                      "bg-black text-white rounded-[10px]"
                     }`}
                   >
-                    {getIcon(item.url)}
+                    <span
+                      className={`text-sm text-darkGray flex flex-col justify-center items-center p-2.5`}
+                    >
+                      {getIcon(item.url)}
+                    </span>
+
+                    <p
+                      className={`text-lg font-medium text-black ${
+                        location.pathname.endsWith(item.url) && " text-white"
+                      }`}
+                    >
+                      {item.title}
+                    </p>
                   </div>
                 </Link>
               ))}

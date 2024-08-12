@@ -1,18 +1,20 @@
-import Wrapper from "@/layouts/Wrapper";
-import SideBar from "@/components/SideBar";
+import useForms from "@/hooks/useForms";
+import { useEffect } from "react";
 
 export default function Dashboard() {
+  // 02. Se debe sacar al usuario una vez que la sesion expira
+  // 04. Validar que si el usuario no tiene ningun espacio.
+  // 05. validar que si el usuario no tiene ningun mensaje en el formulario
+
+  const { getSpace } = useForms();
+
+  useEffect(() => {
+    getSpace();
+  }, [getSpace]);
+
   return (
-    <Wrapper
-      sideBarContent={<SideBar />}
-      name="Blooforms"
-      asideTitle="Dashboard"
-    >
-      <h1>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti
-        cumque odit quia placeat, et ab! At, recusandae optio dolores incidunt
-        ducimus neque illo temporibus in quo a velit minima harum.
-      </h1>
-    </Wrapper>
+    <div>
+      <h1>Dashboard</h1>
+    </div>
   );
 }

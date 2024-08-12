@@ -5,4 +5,9 @@ interface AuthState {
   isAuthenticated: boolean;
 }
 
-export type { AuthState };
+interface AuthUser {
+  email: string;
+  password: string;
+}
+
+export type { AuthState, AuthUser };

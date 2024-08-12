@@ -9,9 +9,12 @@ import FormWrapper from "@/components/FormWrapper";
 
 import { Form } from "@/components/ui/form";
 import Fields from "@/components/Fields";
+import { auth } from "@/services/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const form = useForm({
     resolver: zodResolver(RegisterSchema),
@@ -21,9 +24,34 @@ export default function Login() {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof RegisterSchema>) => {
-    setLoading(true);
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
+    try {
+      setLoading(true);
+
+      const payload = {
+        email: data.email,
+        password: data.password,
+      };
+
+      const user = await auth(payload);
+
+      const { accessToken } = user;
+
+      sessionStorage.setItem("accessToken", accessToken);
+
+      sessionStorage.setItem("user", JSON.stringify(user));
+
+      navigate("/home/dashboard");
+
+      //01. guardar usuario en redux
+
+      return user;
+    } catch (error: unknown) {
+      console.log(error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

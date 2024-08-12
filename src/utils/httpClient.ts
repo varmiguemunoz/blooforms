@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-const baseURL = import.meta.env.API_BASE_URL as string;
+const baseURL = import.meta.env.VITE_API_BASE_URL as string;
 
 const httpClient: AxiosInstance = axios.create({
   baseURL,
@@ -18,7 +18,7 @@ const publicHttpClient: AxiosInstance = axios.create({
 
 httpClient.interceptors.request.use(
   async (config) => {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = sessionStorage.getItem("accessToken");
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -35,8 +35,8 @@ httpClient.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshToken = localStorage.getItem("refreshToken");
-        const expiredToken = localStorage.getItem("accessToken");
+        const refreshToken = sessionStorage.getItem("refreshToken");
+        const expiredToken = sessionStorage.getItem("accessToken");
         const response = await axios.post(
           "/auth/refresh-token",
           {
@@ -52,7 +52,7 @@ httpClient.interceptors.response.use(
         );
         const { accessToken } = response.data;
 
-        localStorage.setItem("accessToken", accessToken);
+        sessionStorage.setItem("accessToken", accessToken);
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return axios(originalRequest);
@@ -67,7 +67,7 @@ httpClient.interceptors.response.use(
   }
 );
 
-const fetcher = (url: string, params?: any) =>
+const fetcher = (url: string, params?: unknown) =>
   httpClient.get(url, { params }).then((res) => res.data);
 
 export { httpClient, publicHttpClient, fetcher };

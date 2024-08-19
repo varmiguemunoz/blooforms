@@ -2,18 +2,24 @@ import * as z from "zod";
 
 export const RegisterSchema = z.object({
   email: z.string().email({
-    message: "Please enter a valid email address",
+    message: "Ingresa un email adecuado",
   }),
   password: z.string().min(6, {
-    message: "Password must be at least 6 characters long",
+    message: "La contraseña debe contener minimo 6 caracteres",
   }),
 });
 
 export const LoginSchema = z.object({
   email: z.string().email({
-    message: "Please enter a valid email address",
+    message: "Ingresa un email adecuado",
   }),
   password: z.string().min(6, {
-    message: "Password must be at least 6 characters long",
+    message: "La contraseña debe contener minimo 6 caracteres",
+  }),
+});
+
+export const CreateSpaceSchema = z.object({
+  titulo: z.string().min(6, {
+    message: "Ingresa un titulo adecuado para tu espacio",
   }),
 });

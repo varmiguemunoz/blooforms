@@ -8,9 +8,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
+} from "../components/ui/dialog";
 
-import { Input } from "./ui/input";
+import { Input } from "../components/ui/input";
 import useForms from "@/hooks/useForms";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +22,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
+} from "../components/ui/form";
 import { z } from "zod";
 import useUsers from "@/hooks/useUsers";
 import { toast } from "sonner";

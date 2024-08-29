@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 // ICONS
-import { MdOutlineSettingsSuggest } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { LuWorkflow } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
+import { FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -29,8 +29,8 @@ const MenuRouter = [
         title: "Forms",
       },
       {
-        url: "/home/settings",
-        title: "Settings",
+        url: "/home/customers",
+        title: "Customers",
       },
     ],
   },
@@ -40,8 +40,8 @@ const getIcon = (url: string) => {
   switch (url) {
     case "/home/dashboard":
       return <LuWorkflow size="20" />;
-    case "/home/settings":
-      return <MdOutlineSettingsSuggest size="20" />;
+    case "/home/customers":
+      return <FaUsers size="20" />;
     default:
       return null;
   }

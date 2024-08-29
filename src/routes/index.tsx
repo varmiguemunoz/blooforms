@@ -63,8 +63,8 @@ const router = createBrowserRouter([
             element: <Private element={lazyLoading("Dashboard")} />,
           },
           {
-            path: "settings",
-            element: <Private element={lazyLoading("Settings")} />,
+            path: "customers",
+            element: <Private element={lazyLoading("Customers")} />,
           },
         ],
       },

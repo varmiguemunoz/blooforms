@@ -70,4 +70,4 @@ httpClient.interceptors.response.use(
 const fetcher = (url: string, params?: unknown) =>
   httpClient.get(url, { params }).then((res) => res.data);
 
-export { httpClient, publicHttpClient, fetcher };
+export { httpClient, publicHttpClient, fetcher, baseURL };

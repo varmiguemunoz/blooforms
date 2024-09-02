@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars, @typescript-eslint/no-explicit-any */
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -23,7 +25,6 @@ import {
 } from "./ui/form";
 import { z } from "zod";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModalCustomerProps<T extends z.ZodType<any>> = {
   title: string;
   description: string;
@@ -35,11 +36,11 @@ type ModalCustomerProps<T extends z.ZodType<any>> = {
     type: string;
     placeholder: string;
   }>;
-  onSubmit: (data: z.infer<T>) => Promise<void>;
+
+  onSubmit: (data: z.infer<T>) => Promise<void> | any;
   buttonText: string;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Modal<T extends z.ZodType<any>>({
   title,
   description,

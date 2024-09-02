@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import Spinner from "./Spinner";
-// import CheckBox from './CheckBox'
 
 /* eslint-disable no-unused-vars, @typescript-eslint/no-explicit-any */
 type TableProps<T> = {
-  headers: Column[];
-  data: T[];
+  headers: Column[] | any;
+  data: T[] | unknown | any;
   onSelectedRowsChange?: (selectedRowsKeys: (string | number)[]) => void;
   loading?: boolean;
 };
@@ -27,7 +26,7 @@ const Table: FC<TableProps<DataRow>> = ({ headers, data, loading = false }) => {
     <table className="table-auto w-full">
       <thead>
         <tr className="border-b border-mediumGray">
-          {headers.map((header) => (
+          {headers.map((header: any) => (
             <th
               className="text-sm text-left text-darkGray font-semibold px-4 py-2 border-r border-mediumGray last:border-none"
               key={header.key}
@@ -45,9 +44,9 @@ const Table: FC<TableProps<DataRow>> = ({ headers, data, loading = false }) => {
             </td>
           </tr>
         ) : (
-          data.map((row) => (
+          data.map((row: any) => (
             <tr key={`row-${row.key}`} className="border-b border-mediumGray">
-              {headers.map((header) => {
+              {headers.map((header: any) => {
                 const rowValue = row[header.dataIndex];
 
                 return (

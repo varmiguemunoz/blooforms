@@ -8,6 +8,7 @@ import Table from "@/components/Table";
 import useForms from "@/hooks/useForms";
 import useCustomer from "@/hooks/useCustomer";
 import { CreateCustomerSchema } from "@/schema";
+import DeleteCustomer from "@/container/DeleteCustomer";
 
 export default function Customers() {
   const { getSpace, form } = useForms();
@@ -23,10 +24,11 @@ export default function Customers() {
     return formArray.flatMap(
       (item: {
         id: number;
-        customers: { name: string; email: string; phone: string }[];
+        customers: { name: string; email: string; phone: string; id: number }[];
       }) =>
         item.customers?.map((itemCustomer) => ({
           id: item.id,
+          id_customer: itemCustomer.id || 0,
           name: itemCustomer.name || "",
           email: itemCustomer.email || "",
           phone: itemCustomer.phone || "",
@@ -66,7 +68,7 @@ export default function Customers() {
         <Modal
           title="Crea a tus clientes"
           description="Espacio para agregar tus clientes a tu base de datos"
-          buttonText="Crear Espacio 🧠"
+          buttonText="Agregar Clientes ⚡️"
           formFields={[
             {
               name: "name",
@@ -109,6 +111,12 @@ export default function Customers() {
             title: "Celular",
             key: "phone",
             dataIndex: "phone",
+          },
+          {
+            title: "Eliminar",
+            key: "id_customer",
+            dataIndex: "id_customer",
+            render: (id: number) => <DeleteCustomer id={id} />,
           },
         ]}
         data={customerValues}
